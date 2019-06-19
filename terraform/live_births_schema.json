@@ -1,0 +1,12 @@
+[
+  {
+    "mode": "NULLABLE", 
+    "name": "year", 
+    "type": "INTEGER"
+  }, 
+  {
+    "mode": "NULLABLE", 
+    "name": "live_births", 
+    "type": "INTEGER"
+  }
+]
