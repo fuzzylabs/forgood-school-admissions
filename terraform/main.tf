@@ -17,8 +17,8 @@ resource "google_bigquery_table" "default" {
   # https://github.com/terraform-providers/terraform-provider-google/issues/3868
   provisioner "local-exec" {
     command = <<EOT
-      bq --location=${var.location} load --skip_leading_rows=1 --source_format=CSV
-      ${var.project}:${google_bigquery_dataset.default.dataset_id}.${lookup(var.tables[count.index], "table_id")}
+      bq --location=${var.location} load --skip_leading_rows=1 --source_format=CSV \
+      ${var.project}:${google_bigquery_dataset.default.dataset_id}.${lookup(var.tables[count.index], "table_id")} \
       ${lookup(var.tables[count.index], "data")}
     EOT
   }
