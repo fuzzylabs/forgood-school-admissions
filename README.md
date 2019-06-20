@@ -32,7 +32,6 @@ https://www.ons.gov.uk/generator?uri=/peoplepopulationandcommunity/birthsdeathsa
 
 ### Clean the data
 
-
 ```
 cd data
 ./clean_apps_offers.sh 2019_Apps_Offers_UD_time_series.csv
