@@ -2,9 +2,9 @@
 
 Loading [open datasets](https://data.gov.uk/) into [Google BigQuery](https://cloud.google.com/bigquery/) using [Terraform](https://www.terraform.io/).
 
-BigQuery is Google's serverless, scalable data warehouse that enables training custom Machine Learning models using SQL.
+**BigQuery** is Google's serverless, scalable data warehouse that enables training custom Machine Learning models using SQL.
 
-Terraform (by Hashicorp) is the definitive tool for provisioning Cloud resources. It enables 'everything' to be defined as code.
+**Terraform** (by Hashicorp) is the definitive tool for provisioning Cloud resources. It enables 'everything' to be defined as code.
 
 ## Hypothesis
 
@@ -23,30 +23,21 @@ https://www.ons.gov.uk/peoplepopulationandcommunity/birthsdeathsandmarriages/liv
 * Create some nice visualisations using [Google Data Studio](https://www.blog.google/products/marketingplatform/analytics/data-studio-now-generally-available/)
 
 ### Get the data
-`curl -O https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/807801/2019_Apps_Offers_UD_time_series.csv`
 
-Download (in browser) https://www.ons.gov.uk/generator?uri=/peoplepopulationandcommunity/birthsdeathsandmarriages/livebirths/bulletins/birthsummarytablesenglandandwales/2017/a819f426&format=csv and rename as `2017_Live_Births.csv`
+Save the following files into the `data` directory.
+
+https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/807801/2019_Apps_Offers_UD_time_series.csv
+
+https://www.ons.gov.uk/generator?uri=/peoplepopulationandcommunity/birthsdeathsandmarriages/livebirths/bulletins/birthsummarytablesenglandandwales/2017/a819f426&format=csv rename as `2017_Live_Births.csv`
 
 ### Clean the data
 
-#### Applications and Offers
 
-Some of the integer fields contain a 'x' rather than a blank.
-`sed -i '' 's/,x/,/g' 2019_Apps_Offers_UD_time_series.csv`
-
-#### Live Births
-
-Remove the first 10 lines of non csv data
-`sed -i '' '1,9d' 2017_Live_Births.csv`
-
-Remove Total Fertility Rate (3rd column)
-`cat 2017_Live_Births.csv | awk -F, '{print $1 "," $2}' > temp && mv temp 2017_Live_Births.csv`
-
-Remove the decimal point (convert to thousands)
-`sed -i '' 's/\.//g' 2017_Live_Births.csv`
-
-Add a heading
-`sed -i '' '1s/^/"year","live_births"\n/' 2017_Live_Births.csv`
+```
+cd data
+./clean_apps_offers.sh 2019_Apps_Offers_UD_time_series.csv
+./clean_live_births.sh 2017_Live_Births.csv
+```
 
 ### Load the data into BigQuery
 
