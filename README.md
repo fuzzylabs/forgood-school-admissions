@@ -44,7 +44,7 @@ First of all we need to create the BigQuery [dataset](https://cloud.google.com/b
 
 We'll do all this using [Terraform](https://www.terraform.io/) which is the definitive tool for defining Cloud resources as code.
 
-Install Terraform [here](https://www.terraform.io/downloads.html), then run:
+Install Terraform [here](https://www.terraform.io/downloads.html), [initialise remote state](TERRAFORM_REMOTE_STATE.md) then run:
 ```
 cd terraform
 terraform init
