@@ -1,11 +1,11 @@
 [
   {
-    "mode": "NULLABLE", 
+    "mode": "REQUIRED",
     "name": "year", 
     "type": "INTEGER"
   }, 
   {
-    "mode": "NULLABLE", 
+    "mode": "REQUIRED",
     "name": "live_births", 
     "type": "INTEGER"
   }
