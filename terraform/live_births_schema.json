@@ -1,0 +1,12 @@
+[
+  {
+    "mode": "REQUIRED",
+    "name": "year", 
+    "type": "INTEGER"
+  }, 
+  {
+    "mode": "REQUIRED",
+    "name": "live_births", 
+    "type": "INTEGER"
+  }
+]
